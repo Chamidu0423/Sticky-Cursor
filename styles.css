@@ -1,0 +1,98 @@
+:root {
+  color-scheme: dark;
+  --background-color: hsla(230, 55%, 4%, 1);
+  --toggle-color: hsla(230, 25%, 75%, 1);
+  --line-color: hsla(230, 25%, 15%, .75);
+  --dot-color: hsla(230, 25%, 90%, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  color: var(--toggle-color);
+  cursor: none;
+  font-family: Inter, sans-serif;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.grid-frame {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-frame::before,
+.grid-frame::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--line-color);
+}
+
+.grid-frame::before { top: 30%; }
+.grid-frame::after { bottom: 30%; }
+
+.grid-frame .vline { position: absolute; top: 0; bottom: 0; width: 1px; background-color: var(--line-color); }
+.grid-frame .vline.left { left: 30%; } 
+.grid-frame .vline.right { right: 30%; }
+
+.dot { position: absolute; width: 6px; height: 6px; border-radius: 50%; background-color: var(--dot-color); box-shadow: 0 0 0 3px var(--background-color); z-index: 1; }
+.dot.tl { top: 29.2%; left: 29.65%; } 
+.dot.tr { top: 29.2%; right: 29.65%; } 
+.dot.bl { bottom: 29.2%; left: 29.65%; } 
+.dot.br { bottom: 29.2%; right: 29.65%; }
+
+nav { display: flex; gap: 2rem; position: relative; z-index: 2; }
+
+.icon-btn {
+  --btn-size: 56px;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.icon-btn svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--toggle-color);
+  transition: stroke .14s linear, transform .14s ease;
+}
+
+[data-sticky] { position: relative; }
+[data-sticky] [data-sticky-area] { position: absolute; inset: 0; }
+[data-sticky]:hover [data-sticky-area] { transform: scale(4); }
+
+.icon-btn.is-bubbled svg,
+.icon-btn.is-bubbled svg * {
+  stroke: #fff !important;
+  color: #fff !important;
+}
+.bubble {
+  width: var(--bubble-size, 24px);
+  height: var(--bubble-size, 24px);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+}
