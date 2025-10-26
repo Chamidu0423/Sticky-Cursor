@@ -29,7 +29,7 @@ A smooth, interactive sticky cursor animation built with GSAP and JavaScript. Th
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/sticky-cursor.git
+   git clone https://github.com/Chamidu0423/Sticky-Cursor
    cd sticky-cursor
    ```
 
